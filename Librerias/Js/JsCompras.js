@@ -33,27 +33,6 @@ function eliminarRegistro(){
         })
     });
 }
-//Editar registro.slice(-2, 0)
-/*function editar(){
-    $(document).one('click', 'button[type="button"]', function(event){
-        let id=this.id;
-        var lista=[];
-        $('#listaClientes').each(function(){
-            var celdas=$(this).find('tr.Reg_'+id);
-            celdas.each(function(){
-                var registro=$(this).find('span');
-                registro.each(function(){
-                    lista.push($(this).html())
-                });
-            });
-        });
-        document.getElementById("identificacion").value=lista[0];
-        document.getElementById("nombre").value=lista[1];
-        document.getElementById("ocupacion").value=lista[2];
-        document.getElementById("sisben").value=lista[3];
-        nuevoId=lista[0];
-    })
-}*/
 $(function(){
     //crear la tabla de productos
     $("#crearTabla").click(function(){
@@ -113,22 +92,6 @@ $(function(){
         limpiar();
         cargarDatos();
     })
-    //Modificar un registro
-    /*$("#modificar").click(function(){
-        var nidentificacion=$("#identificacion").val();
-        var nnombre=$("#nombre").val();
-        var nocupacion=$("#ocupacion").val();
-        var nsisben=$("#sisben").val();
-        db.transaction(function(transaction){
-            var sql="UPDATE clientes SET identificacion='"+nidentificacion+"', nombre='"+nnombre+"', ocupacion='"+nocupacion+"', sisben='"+nsisben+"' WHERE identificacion="+nuevoId+";"
-            transaction.executeSql(sql, undefined, function(){
-                cargarDatos();
-                limpiar();
-            }, function(transaction, err){
-                alert(err.message);
-            })
-        })
-    })*/
     //Para borrar toda la lista de Registros
     $("#borrarTodo").click(function(){
         if(!confirm("Esta seguro de borrar la tabla?, los datos se perderan permanentemente",""))
