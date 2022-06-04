@@ -37,7 +37,7 @@ function editar(){
     $(document).one('click', 'button[type="button"]', function(event){
         let id=this.id;
         var lista=[];
-        $('#listaClientes').each(function(){
+        $('#listaProductos').each(function(){
             var celdas=$(this).find('tr.Reg_'+id);
             celdas.each(function(){
                 var registro=$(this).find('span');
@@ -46,10 +46,10 @@ function editar(){
                 });
             });
         });
-        document.getElementById("identificacion").value=lista[0];
-        document.getElementById("nombre").value=lista[1];
-        document.getElementById("ocupacion").value=lista[2];
-        document.getElementById("sisben").value=lista[3];
+        document.getElementById("tipo").value=lista[0];
+        document.getElementById("idproducto").value=lista[1];
+        document.getElementById("nombre").value=lista[2];
+        document.getElementById("precio").value=lista[3];
         nuevoId=lista[0];
     })
 }
@@ -57,7 +57,7 @@ $(function(){
     //crear la tabla de productos
     $("#crearTabla").click(function(){
         db.transaction(function(transaction){
-            var sql="CREATE TABLE clientes (identificacion NUMBER NOT NULL, nombre VARCHAR(100) NOT NULL, ocupacion VARCHAR(100) NOT NULL, sisben DECIMAL(4,2) NOT NULL)";
+            var sql="CREATE TABLE clientes (tipo tipo NOT NULL, idproducto VARCHAR(100) NOT NULL, nombre VARCHAR(100) NOT NULL, precio VARCHAR(100) NOT NULL)";
             transaction.executeSql(sql, undefined, function(){
                 alert("Tabla creada satisfactoriamente");
             }, function(transaction, err){
@@ -71,22 +71,22 @@ $(function(){
     })
     //funcion para listar y pintar tabla de productos en la pagina web
     function cargarDatos(){
-        $("#listaClientes").children().remove();
+        $("#listaProductos").children().remove();
         db.transaction(function(transaction){
             var sql="SELECT * FROM clientes";
             transaction.executeSql(sql, undefined, function(transaction, result){
                 if(result.rows.length){
-                    $("#listaClientes").append('<tr><th>Identificacion</th><th>Nombre</th><th>Ocupacion</th><th>Sisben</th><th></th><th></th></tr>');
+                    $("#listaProductos").append('<tr><th>Tipo</th><th>IdProducto</th><th>Nombre</th><th>Precio</th><th></th><th></th></tr>');
                     for(var i=0; i<result.rows.length; i++){
                         var row=result.rows.item(i);
                         var identificacion=row.identificacion;
                         var nombre=row.nombre;
                         var ocupacion=row.ocupacion;
                         var sisben=row.sisben;
-                        $("#listaClientes").append('<tr id="fila'+identificacion+'"class="Reg_'+identificacion+'"><td><span class="mid">'+identificacion+'</span></td><td><span>'+nombre+'</span></td><td><span>'+ocupacion+'</span></td><td><span>'+sisben+'</span></td><td><button type="button" id="'+identificacion+'" button class="btn btn-success" onclick="editar()"><img src="Librerias/Img/editar.png"/></button></td><td><button type="button" id="'+identificacion+'" button class="btn btn-danger" onclick="eliminarRegistro()"><img src="Librerias/Img/eliminar1.png"/></button></td></tr>');
+                        $("#listaProducto").append('<tr id="fila'+tipo+'"class="Reg_'+idproducto+'"><td><span class="mid">'+tipo+'</span></td><td><span>'+idproducto+'</span></td><td><span>'+nombre+'</span></td><td><span>'+precio+'</span></td><td><button type="button" id="'+identificacion+'" button class="btn btn-success" onclick="editar()"><img src="Librerias/Img/editar.png"/></button></td><td><button type="button" id="'+identificacion+'" button class="btn btn-danger" onclick="eliminarRegistro()"><img src="Librerias/Img/eliminar1.png"/></button></td></tr>');
                     }
                 }else{
-                    $("#listaClientes").append('<tr><td colspan="5" align="center">No existen registros de clientes</td></tr>');
+                    $("#listaProductos").append('<tr><td colspan="5" align="center">No existen registros de clientes</td></tr>');
                 }
             }, function(transaction, err){
                 alert(err.message);
@@ -95,13 +95,13 @@ $(function(){
     }
     //insertar registros
     $("#insertar").click(function(){
-        var identificacion=$("#identificacion").val();
-        var nombre=$("#nombre").val();
-        var ocupacion=$("#ocupacion").val();
-        var sisben=$("#sisben").val();
+        var identificacion=$("#tipo").val();
+        var nombre=$("#idproducto").val();
+        var ocupacion=$("#nombre").val();
+        var sisben=$("#precio").val();
         db.transaction(function(transaction){
-            var sql="INSERT INTO clientes (identificacion, nombre, ocupacion, sisben) VALUES (?, ?, ?, ?)";
-            transaction.executeSql(sql, [identificacion, nombre, ocupacion, sisben], function(){
+            var sql="INSERT INTO clientes (tipo, idproducto, nombre, precio) VALUES (?, ?, ?, ?)";
+            transaction.executeSql(sql, [tipo, idproducto, nombre, precio], function(){
 
             }, function(transaction, err){
                 alert(err.message);
@@ -112,12 +112,12 @@ $(function(){
     })
     //Modificar un registro
     $("#modificar").click(function(){
-        var nidentificacion=$("#identificacion").val();
+        var ntipo=$("#tipo").val();
+        var nidproducto=$("#idproducto").val();
         var nnombre=$("#nombre").val();
-        var nocupacion=$("#ocupacion").val();
-        var nsisben=$("#sisben").val();
+        var nprecio=$("#precio").val();
         db.transaction(function(transaction){
-            var sql="UPDATE clientes SET identificacion='"+nidentificacion+"', nombre='"+nnombre+"', ocupacion='"+nocupacion+"', sisben='"+nsisben+"' WHERE identificacion="+nuevoId+";"
+            var sql="UPDATE clientes SET tipo='"+ntipo+"', idproducto='"+nidproducto+"', nombre='"+nnombre+"', precio='"+nprecio+"' WHERE tipo="+nuevoId+";"
             transaction.executeSql(sql, undefined, function(){
                 cargarDatos();
                 limpiar();
