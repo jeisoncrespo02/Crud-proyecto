@@ -2,7 +2,7 @@ body{
     width: 715px;
     margin: 0 auto;
     background-color: lightcoral;
-    font-size: 20px;
+    
 }
 .form-cliente{
     width: 700px;
@@ -18,13 +18,8 @@ form{
     width: 715px;
     color: blue;
 }
-img{
-    width: 40px;
-    height: 20px;
-}
-.container{
-    color: blue;
-}
+
+
 ul {
     list-style-type: none;
     margin: 0;
