@@ -4,6 +4,7 @@ function limpiar(){
     document.getElementById("identificacion").value="";
     document.getElementById("nombre").value="";
     document.getElementById("ocupacion").value="";
+    document.getElementById("sisben").value="";
 }
 //Funcionalidad de los botones
 //Eliminar registro
@@ -48,6 +49,7 @@ function editar(){
         document.getElementById("identificacion").value=lista[0];
         document.getElementById("nombre").value=lista[1];
         document.getElementById("ocupacion").value=lista[2];
+        document.getElementById("sisben").value=lista[3];
         nuevoId=lista[0];
     })
 }
@@ -55,7 +57,7 @@ $(function(){
     //crear la tabla de productos
     $("#crearTabla").click(function(){
         db.transaction(function(transaction){
-            var sql="CREATE TABLE clientes (identificacion NUMBER NOT NULL, nombre VARCHAR(100) NOT NULL, ocupacion VARCHAR(100) NOT NULL)";
+            var sql="CREATE TABLE clientes (identificacion NUMBER NOT NULL, nombre VARCHAR(100) NOT NULL, ocupacion VARCHAR(100) NOT NULL, sisben DECIMAL(4,2) NOT NULL)";
             transaction.executeSql(sql, undefined, function(){
                 alert("Tabla creada satisfactoriamente");
             }, function(transaction, err){
@@ -74,13 +76,14 @@ $(function(){
             var sql="SELECT * FROM clientes";
             transaction.executeSql(sql, undefined, function(transaction, result){
                 if(result.rows.length){
-                    $("#listaClientes").append('<tr><th>Identificacion</th><th>Nombre</th><th>Ocupacion</th><th></th><th></th></tr>');
+                    $("#listaClientes").append('<tr><th>Identificacion</th><th>Nombre</th><th>Ocupacion</th><th>Sisben</th><th></th><th></th></tr>');
                     for(var i=0; i<result.rows.length; i++){
                         var row=result.rows.item(i);
                         var identificacion=row.identificacion;
                         var nombre=row.nombre;
                         var ocupacion=row.ocupacion;
-                        $("#listaClientes").append('<tr id="fila'+identificacion+'"class="Reg_'+identificacion+'"><td><span class="mid">'+identificacion+'</span></td><td><span>'+nombre+'</span></td><td><span>'+ocupacion+'</span></td><td><button type="button" id="'+identificacion+'" button class="btn btn-success" onclick="editar()"><img src="Librerias/Img/editar.png"/></button></td><td><button type="button" id="'+identificacion+'" button class="btn btn-danger" onclick="eliminarRegistro()"><img src="Librerias/Img/eliminar1.png"/></button></td></tr>');
+                        var sisben=row.sisben;
+                        $("#listaClientes").append('<tr id="fila'+identificacion+'"class="Reg_'+identificacion+'"><td><span class="mid">'+identificacion+'</span></td><td><span>'+nombre+'</span></td><td><span>'+ocupacion+'</span></td><td><span>'+sisben+'</span></td><td><button type="button" id="'+identificacion+'" button class="btn btn-success" onclick="editar()"><img src="Librerias/Img/editar.png"/></button></td><td><button type="button" id="'+identificacion+'" button class="btn btn-danger" onclick="eliminarRegistro()"><img src="Librerias/Img/eliminar1.png"/></button></td></tr>');
                     }
                 }else{
                     $("#listaClientes").append('<tr><td colspan="5" align="center">No existen registros de clientes</td></tr>');
@@ -95,9 +98,10 @@ $(function(){
         var identificacion=$("#identificacion").val();
         var nombre=$("#nombre").val();
         var ocupacion=$("#ocupacion").val();
+        var sisben=$("#sisben").val();
         db.transaction(function(transaction){
-            var sql="INSERT INTO clientes (identificacion, nombre, ocupacion) VALUES (?, ?, ?)";
-            transaction.executeSql(sql, [identificacion, nombre, ocupacion], function(){
+            var sql="INSERT INTO clientes (identificacion, nombre, ocupacion, sisben) VALUES (?, ?, ?, ?)";
+            transaction.executeSql(sql, [identificacion, nombre, ocupacion, sisben], function(){
 
             }, function(transaction, err){
                 alert(err.message);
@@ -111,8 +115,9 @@ $(function(){
         var nidentificacion=$("#identificacion").val();
         var nnombre=$("#nombre").val();
         var nocupacion=$("#ocupacion").val();
+        var nsisben=$("#sisben").val();
         db.transaction(function(transaction){
-            var sql="UPDATE clientes SET identificacion='"+nidentificacion+"', nombre='"+nnombre+"', ocupacion='"+nocupacion+"' WHERE identificacion="+nuevoId+";"
+            var sql="UPDATE clientes SET identificacion='"+nidentificacion+"', nombre='"+nnombre+"', ocupacion='"+nocupacion+"', sisben='"+nsisben+"' WHERE identificacion="+nuevoId+";"
             transaction.executeSql(sql, undefined, function(){
                 cargarDatos();
                 limpiar();

@@ -13,13 +13,11 @@
     <body>
         <section class="form-client">
             <ul>
-                <li><a href="Menu.html"> MENÚ </a></li>
-                    <li><a href="GestionProductos.html"> GESTIONAR PRODUCTO </a></li>
-                    <li><a href="Gestiondecompras.html"> GESTIONAR COMPRA </a></li>
-    
-    
-                </li>
-            </ul> <br/>
+                <li> <a href="Menu.html"> MENÚ </a> </li>
+                <li> <a href="GestionProductos.html"> GESTIONAR PRODUCTOS </a> </li>
+                <li> <a href="Gestiondecompras.html"> GESTIONAR COMPRAS </a> </li>
+            </ul> 
+            <br/>
             <h1> GESTION DE CLIENTES </h1>
             <div class="container"> 
                 <div class="row"> 
@@ -32,12 +30,15 @@
                             <input type="text" class="form-control" id="nombre"/>
                             <br/>
                             <legend> Ocupacion </legend>
-                            <select class="" id=""> 
+                            <select class="form-control" id="ocupacion"> 
                                 <option value="estudiante"> Estudiante </option>
                                 <option value="docente"> Docente </option>
                                 <option value="otro"> Otro </option>
                             </select>
-                            <br/><br>
+                            <br/>
+                            <legend> Sisben </legend>
+                            <input type="number" step="0.01" class="form-control" id="sisben"/>
+                            <br/>
                             <button type="button" id="crearTabla" class="btn btn-success"> Crear Tabla </button>
                             <button type="button" id="insertar" class="btn btn-success"> Insertar Datos </button>
                             <button type="button" id="modificar" class="btn btn-danger"> Modificar Datos </button>
@@ -45,7 +46,7 @@
                             <button type="button" id="borrarTodo" class="btn btn-danger"> Eliminar Todo </button>
                         </fieldset>
                     </form>
-                    <br/><br>
+                    <br/> <br/>
                     <hr/>
                     <h3> LISTA DE CLIENTES </h3>
                     <table class="table table-borderer table-hover" id="listaClientes" style="width: 715px">
@@ -54,6 +55,5 @@
                 </div>
             </div>
         </section>
-        
     </body>
 </html>
