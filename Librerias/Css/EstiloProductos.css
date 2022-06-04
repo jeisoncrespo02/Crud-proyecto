@@ -8,6 +8,7 @@ body{
   padding: 30px;
   margin: auto;
   margin-top: 100px;
+  color: blue;
 }
 h1{
   text-align: center;
@@ -16,6 +17,7 @@ h1{
 form{
   width: 715px;
   color: blue;
+  font-size: 20px;
 }
 
 .Controls{
@@ -44,5 +46,9 @@ ul {
   
   li a:hover {
     background-color: #111;
+  }
+  img{
+    width: 40px;
+    height: 20px;
   }
   
