@@ -3,10 +3,12 @@ body{
     margin: 0 auto;
     background-color: lightcoral;
 }
-h1{
-    text-align: center;
-    color: blue;
-}
+.form-producto{
+    width: 700px;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+  }
 ul {
     list-style-type: none;
     margin: 0;
@@ -29,10 +31,4 @@ ul {
   li a:hover {
     background-color: #111;
   }
-
-.form-compra{
-  width: 700px;
-  padding: 30px;
-  margin: auto;
-    margin-top: 100px;
-}
+  
