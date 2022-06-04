@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="librerias/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="librerias/css/EstiloProductos.css"/>
         <script type="text/javascript" src="librerias/js/jquery-3.6.0.min.js"> </script>
-        <script type="text/javascript" src="librerias/js/crud.js"> </script>
+        <script type="text/javascript" src="librerias/js/CrudProductos.js"> </script>
     <title>Gestion productos</title>
 </head>
 <body>
@@ -22,8 +22,8 @@
             <div><h1>Gestion productos</h1></div><br>
      <form>
         <label>Tipo</label>
-        <select name="" id="">
-            <option value="" ">Seleccione</option>
+        <select name="tipo" id="tipo">
+            <option value="" >Seleccione</option>
             <option value="">CHOCO CONO</option>
             <option value="">PALETAS</option>
             <option value="">BROWNIE</option>
@@ -37,10 +37,11 @@
         <label class="Controls"  for="precio">Precio:</label>
         <input class="Controls"  type="number" id="precio" name="precio" placeholder="Precio"><br><br>
 
-        <button type="button" id="guardar" class="btn btn-success">Guardar </button>
-        <button type="button" id="modificar" class="btn btn-success">Modificar</button>
-        <button type="button" id="eliminar" class="btn btn-danger">Eliminar</button>
-        <button type="button"  id="limpiar" class="btn btn-success">Limpiar</button>
+        <button type="button" id="crearTabla" class="btn btn-success"> Crear Tabla </button>
+        <button type="button" id="insertar" class="btn btn-success"> Insertar Datos </button>
+        <button type="button" id="modificar" class="btn btn-danger"> Modificar Datos </button>
+        <button type="button" id="listar" class="btn btn-success"> Mostrar/Actualizar Datos </button>
+        <button type="button" id="borrarTodo" class="btn btn-danger"> Eliminar Todo </button>
         
      </form><br><br>
      <h3> LISTA DE PRODUCTOS </h3>
