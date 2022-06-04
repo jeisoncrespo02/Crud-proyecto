@@ -1,8 +1,9 @@
 var nuevoId;
 var db=openDatabase("itemDB", "1.0", "itemDB", 65535)
 function limpiar(){
-    document.getElementById("item").value="";
-    document.getElementById("precio").value="";
+    document.getElementById("identificacion").value="";
+    document.getElementById("nombre").value="";
+    document.getElementById("ocupacion").value="";
 }
 //Funcionalidad de los botones
 //Eliminar registro
@@ -10,7 +11,7 @@ function eliminarRegistro(){
     $(document).one('click', 'button[type="button"]', function(event){
         let id=this.id;
         var lista=[];
-        $('#listaProductos').each(function(){
+        $('#listaClientes').each(function(){
             var celdas=$(this).find('tr.Reg_'+id);
             celdas.each(function(){
                 var registro=$(this).find('span.mid');
@@ -19,9 +20,9 @@ function eliminarRegistro(){
                 });
             });
         });
-        nuevoId=lista[0].substr(1);
+        nuevoId=lista[0];
         db.transaction(function(transaction){
-            var sql="DELETE FROM productos WHERE id="+nuevoId+";"
+            var sql="DELETE FROM clientes WHERE identificacion="+nuevoId+";"
             transaction.executeSql(sql, undefined, function(){
                 alert("Registro borrado satisfactoriamente, por favor actualice la tabla")
             }, function(transaction, err){
@@ -35,7 +36,7 @@ function editar(){
     $(document).one('click', 'button[type="button"]', function(event){
         let id=this.id;
         var lista=[];
-        $('#listaProductos').each(function(){
+        $('#listaClientes').each(function(){
             var celdas=$(this).find('tr.Reg_'+id);
             celdas.each(function(){
                 var registro=$(this).find('span');
@@ -44,16 +45,17 @@ function editar(){
                 });
             });
         });
-        document.getElementById("item").value=lista[1];
-        document.getElementById("precio").value=lista[2];
-        nuevoId=lista[0].substr(1);
+        document.getElementById("identificacion").value=lista[0];
+        document.getElementById("nombre").value=lista[1];
+        document.getElementById("ocupacion").value=lista[2];
+        nuevoId=lista[0];
     })
 }
 $(function(){
     //crear la tabla de productos
-    $("#crear").click(function(){
+    $("#crearTabla").click(function(){
         db.transaction(function(transaction){
-            var sql="CREATE TABLE productos (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, item VARCHAR(100) NOT NULL, precio DECIMAL(5,2) NOT NULL)";
+            var sql="CREATE TABLE clientes (identificacion NUMBER NOT NULL, nombre VARCHAR(100) NOT NULL, ocupacion VARCHAR(100) NOT NULL)";
             transaction.executeSql(sql, undefined, function(){
                 alert("Tabla creada satisfactoriamente");
             }, function(transaction, err){
@@ -67,21 +69,21 @@ $(function(){
     })
     //funcion para listar y pintar tabla de productos en la pagina web
     function cargarDatos(){
-        $("#listaProductos").children().remove();
+        $("#listaClientes").children().remove();
         db.transaction(function(transaction){
-            var sql="SELECT * FROM productos ORDER BY id DESC";
+            var sql="SELECT * FROM clientes";
             transaction.executeSql(sql, undefined, function(transaction, result){
                 if(result.rows.length){
-                    $("#listaProductos").append('<tr><th>Codigo</th><th>Producto</th><th>Precio</th><th></th><th></th></tr>');
+                    $("#listaClientes").append('<tr><th>Identificacion</th><th>Nombre</th><th>Ocupacion</th><th></th><th></th></tr>');
                     for(var i=0; i<result.rows.length; i++){
                         var row=result.rows.item(i);
-                        var item=row.item;
-                        var id=row.id;
-                        var precio=row.precio;
-                        $("#listaProductos").append('<tr id="fila'+id+'"class="Reg_A'+id+'"><td><span class="mid">A'+id+'</span></td><td><span>'+item+'</span></td><td><span>'+precio+'</span></td><td><button type="button" id="A'+id+'" button class="btn btn-success" onclick="editar()"><img src="librerias/img/editar.png"/></button></td><td><button type="button" id="A'+id+'" button class="btn btn-danger" onclick="eliminarRegistro()"><img src="librerias/img/eliminar1.png"/></button></td></tr>');
+                        var identificacion=row.identificacion;
+                        var nombre=row.nombre;
+                        var ocupacion=row.ocupacion;
+                        $("#listaClientes").append('<tr id="fila'+identificacion+'"class="Reg_'+identificacion+'"><td><span class="mid">'+identificacion+'</span></td><td><span>'+nombre+'</span></td><td><span>'+ocupacion+'</span></td><td><button type="button" id="'+identificacion+'" button class="btn btn-success" onclick="editar()"><img src="Librerias/Img/editar.png"/></button></td><td><button type="button" id="'+identificacion+'" button class="btn btn-danger" onclick="eliminarRegistro()"><img src="Librerias/Img/eliminar1.png"/></button></td></tr>');
                     }
                 }else{
-                    $("#listaProductos").append('<tr><td colspan="5" align="center">No existen registros de productos</td></tr>');
+                    $("#listaClientes").append('<tr><td colspan="5" align="center">No existen registros de clientes</td></tr>');
                 }
             }, function(transaction, err){
                 alert(err.message);
@@ -90,11 +92,12 @@ $(function(){
     }
     //insertar registros
     $("#insertar").click(function(){
-        var item=$("#item").val();
-        var precio=$("#precio").val();
+        var identificacion=$("#identificacion").val();
+        var nombre=$("#nombre").val();
+        var ocupacion=$("#ocupacion").val();
         db.transaction(function(transaction){
-            var sql="INSERT INTO productos (item, precio) VALUES (?, ?)";
-            transaction.executeSql(sql, [item, precio], function(){
+            var sql="INSERT INTO clientes (identificacion, nombre, ocupacion) VALUES (?, ?, ?)";
+            transaction.executeSql(sql, [identificacion, nombre, ocupacion], function(){
 
             }, function(transaction, err){
                 alert(err.message);
@@ -105,10 +108,11 @@ $(function(){
     })
     //Modificar un registro
     $("#modificar").click(function(){
-        var nprod=$("#item").val();
-        var nprecio=$("#precio").val();
+        var nidentificacion=$("#identificacion").val();
+        var nnombre=$("#nombre").val();
+        var nocupacion=$("#ocupacion").val();
         db.transaction(function(transaction){
-            var sql="UPDATE productos SET item='"+nprod+"', precio='"+nprecio+"' WHERE id="+nuevoId+";"
+            var sql="UPDATE clientes SET identificacion='"+nidentificacion+"', nombre='"+nnombre+"', ocupacion='"+nocupacion+"' WHERE identificacion="+nuevoId+";"
             transaction.executeSql(sql, undefined, function(){
                 cargarDatos();
                 limpiar();
@@ -122,7 +126,7 @@ $(function(){
         if(!confirm("Esta seguro de borrar la tabla?, los datos se perderan permanentemente",""))
         return;
         db.transaction(function(transaction){
-            var sql="DROP TABLE productos";
+            var sql="DROP TABLE clientes";
             transaction.executeSql(sql, undefined, function(){
                 alert("Tabla borrada satisfactoriamente, por favor, actualice la pagina")
             }, function(transaction, err){
