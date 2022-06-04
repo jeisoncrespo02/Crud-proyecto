@@ -40,13 +40,34 @@ ul {
   margin: auto;
     margin-top: 100px;
 }
+.Controls1{
+  width: 45%;
+  border-radius: 4px;
+  border-bottom: 16px;
+}
+.Controls2{
+  width: 37%;
+  border-radius: 4px;
+  border-bottom: 16px;
+}
+.Controls3{
+  width: 45.5%;
+  border-radius: 4px;
+  border-bottom: 16px;
+}
+.Controls4{
+  width: 56%;
+  border-radius: 4px;
+  border-bottom: 16px;
+}
+.Controls5{
+  width: 47%;
+  border-radius: 4px;
+  border-bottom: 16px;
+}
 h1{
   text-align: center;
   color: blue;
 }
 
-.Controls{
-  width: 50%;
-  border-radius: 4px;
-  border-bottom: 16px;
-}
+
