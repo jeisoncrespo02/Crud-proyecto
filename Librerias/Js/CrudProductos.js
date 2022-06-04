@@ -73,20 +73,20 @@ $(function(){
     function cargarDatos(){
         $("#listaProductos").children().remove();
         db.transaction(function(transaction){
-            var sql="SELECT * FROM clientes";
+            var sql="SELECT * FROM productos";
             transaction.executeSql(sql, undefined, function(transaction, result){
                 if(result.rows.length){
-                    $("#listaProductos").append('<tr><th>Tipo</th><th>IdProducto</th><th>Nombre</th><th>Precio</th><th></th><th></th></tr>');
+                    $("#listaProductos").append('<tr><th>tipo</th><th>idproducto</th><th>nombre</th><th>precio</th><th></th><th></th></tr>');
                     for(var i=0; i<result.rows.length; i++){
                         var row=result.rows.item(i);
-                        var identificacion=row.identificacion;
+                        var tipo=row.tipo;
+                        var idproducto=row.idproducto;
                         var nombre=row.nombre;
-                        var ocupacion=row.ocupacion;
-                        var sisben=row.sisben;
+                        var precio=row.precio;
                         $("#listaProducto").append('<tr id="fila'+tipo+'"class="Reg_'+idproducto+'"><td><span class="mid">'+tipo+'</span></td><td><span>'+idproducto+'</span></td><td><span>'+nombre+'</span></td><td><span>'+precio+'</span></td><td><button type="button" id="'+identificacion+'" button class="btn btn-success" onclick="editar()"><img src="Librerias/Img/editar.png"/></button></td><td><button type="button" id="'+identificacion+'" button class="btn btn-danger" onclick="eliminarRegistro()"><img src="Librerias/Img/eliminar1.png"/></button></td></tr>');
                     }
                 }else{
-                    $("#listaProductos").append('<tr><td colspan="5" align="center">No existen registros de clientes</td></tr>');
+                    $("#listaProductos").append('<tr><td colspan="5" align="center">No existen registros de productos</td></tr>');
                 }
             }, function(transaction, err){
                 alert(err.message);
@@ -95,12 +95,12 @@ $(function(){
     }
     //insertar registros
     $("#insertar").click(function(){
-        var identificacion=$("#tipo").val();
-        var nombre=$("#idproducto").val();
-        var ocupacion=$("#nombre").val();
-        var sisben=$("#precio").val();
+        var tipo=$("#tipo").val();
+        var idproducto=$("#idproducto").val();
+        var nombre=$("#nombre").val();
+        var precio=$("#precio").val();
         db.transaction(function(transaction){
-            var sql="INSERT INTO clientes (tipo, idproducto, nombre, precio) VALUES (?, ?, ?, ?)";
+            var sql="INSERT INTO productos (tipo, idproducto, nombre, precio) VALUES (?, ?, ?, ?)";
             transaction.executeSql(sql, [tipo, idproducto, nombre, precio], function(){
 
             }, function(transaction, err){
