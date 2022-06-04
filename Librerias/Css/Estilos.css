@@ -1,6 +1,7 @@
 body{
     width: 715px;
     margin: 0 auto;
+    background-color: lightcoral;
 }
 h1{
     text-align: center;
@@ -34,3 +35,4 @@ ul {
   li a:hover {
     background-color: #111;
   }
+  
