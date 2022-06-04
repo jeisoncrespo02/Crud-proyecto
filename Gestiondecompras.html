@@ -7,45 +7,49 @@
     <meta name="viewport" content="user-scalable=no, width=device,with" charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="librerias/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="librerias/css/EstiloCompras.css"/>
+    <script type="text/javascript" src="librerias/js/jquery-3.6.0.min.js"> </script>
+    <script type="text/javascript" src="librerias/js/JsCompras.js"> </script>
 </head>
 <body>
     <section Class="form-compra">
         <ul>
-            <li><a href="Menu.html">  MENÚ  </a></li>
-            <li><a href="GestionProductos.html">  GESTIONAR PRODUCTO  </a></li>
-            <li><a href="GestionClientes.html">  GESTIONAR CLIENTE  </a></li>
-
-        </ul>  <br>
-        <div><h1>Gestion compras</h1></div><br>
+            <li> <a href="Menu.html">  MENÚ  </a> </li>
+            <li> <a href="GestionProductos.html">  GESTIONAR PRODUCTOS  </a> </li>
+            <li> <a href="GestionClientes.html">  GESTIONAR CLIENTES  </a> </li>
+        </ul> <br/>
+        <div> <h1> GESTION DE COMPRAS </h1> </div> <br/>
         <form>
-            <label class="Controls" for="precio">Identificacion: </label><br>
-            <input class="Controls1" type="number" id="identificacion" name="identificacion" placeholder="">
-            <button type="button"  id="buscar" class="btn btn-success">Buscar</button><br><br>
+            <label class="Controls" for="idCliente"> Id cliente: </label> <br/>
+            <input class="Controls1" type="number" id="idCliente" name="idCliente" placeholder="">
+            <button type="button"  id="buscar" class="btn btn-success"> Buscar </button> <br/> <br/>
         
-            <label>Tipo de helados:</label><br>
+            <label> Tipo de helados: </label> <br/>
             <select name="" id="">
-            <option value="">Seleccione</option><br>
-            <option value="">CHOCO CONO</option>
-            <option value="">PALETAS</option>
-            <option value="">BROWNIE</option>
-            <option value="">BANANA SPLIT</option>
+            <option value=""> Seleccione </option> <br/>
+            <option value=""> CHOCO CONO </option>
+            <option value=""> PALETAS </option>
+            <option value=""> BROWNIE </option>
+            <option value=""> BANANA SPLIT </option>
             </select>
-            <input class="Controls2"  type="text" id="tipohelado" name="tipohelado" placeholder=""><br><br>
+            <input class="Controls2"  type="text" id="tipoHelado" name="tipoHelado" placeholder=""> <br/> <br/>
         
-            <button type="button"  id="precio" class="btn btn-success">Precio</button>
-            <input class="Controls3" type="number" id="precio" name="precio" placeholder=""><br><br>
+            <button type="button"  id="botonPrecio" class="btn btn-success"> Precio </button>
+            <input class="Controls3" type="number" id="precio" name="precio" placeholder=""> <br/> <br/>
 
-            <label class="Controls" for="nombre">Descuento:</label><br>
-            <input class="Controls4" type="number" id="descuento" name="descuento" placeholder=""><br><br>
+            <label class="Controls" for="botonDescuento"> Descuento: </label> <br/>
+            <input class="Controls4" type="number" id="descuento" name="descuento" placeholder=""> <br/> <br/>
         
-            <button type="button"  id="precio" class="btn btn-success">Total</button>
-            <input class="Controls5"  type="number" id="total" name="total" placeholder=""> <br><br>   
+            <button type="button"  id="botonTotal" class="btn btn-success"> Total </button>
+            <input class="Controls5"  type="number" id="total" name="total" placeholder=""> <br/> <br/>   
         
-            <button type="button"  id="precio" class="btn btn-success">Limpiar</button>
-            <button type="button"  id="precio" class="btn btn-success">Comprar</button>
-        </form><br><br>
+            <button type="button"  id="limpiar" class="btn btn-success"> Limpiar </button>
+            <button type="button"  id="crearTabla" class="btn btn-success"> Crear Tabla </button>
+            <button type="button"  id="comprar" class="btn btn-success"> Comprar </button>
+            <button type="button"  id="listar" class="btn btn-success"> Mostrar Datos </button>
+            <button type="button"  id="borrarTodo" class="btn btn-success"> Eliminar Todo </button>
+        </form> <br/> <br/>
         <h3> LISTA DE COMPRAS </h3>
-                    <table class="table table-borderer table-hover" id="listaClientes" style="width: 715px">
+                    <table class="table table-borderer table-hover" id="listaCompras" style="width: 715px">
     
                     </table>
     </section>
