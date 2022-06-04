@@ -1,0 +1,17 @@
+body{
+    width: 715px;
+    margin: 0 auto;
+    background-color: lightcoral;
+}
+h1{
+    text-align: center;
+    color: blue;
+}
+h2{
+    text-align: center;
+    color: blue;
+}
+ul{
+    text-align: center;
+    color: blue;
+}
