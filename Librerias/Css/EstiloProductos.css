@@ -3,6 +3,14 @@ body{
     margin: 0 auto;
     background-color: lightcoral;
 }
+h1{
+  text-align: center;
+  color: blue;
+}
+form{
+  width: 715px;
+  color: blue;
+}
 .form-producto{
     width: 700px;
     padding: 30px;

@@ -11,48 +11,50 @@
         <script type="text/javascript" src="librerias/js/Crud.js"> </script>
     </head>
     <body>
-        <ul>
-            <li>
-                <a href="Menu.html"> MENÚ </a>
-                <a href="GestionProductos.html"> GESTIONAR PRODUCTO </a>
-                <a href="Gestiondecompras.html"> GESTIONAR COMPRA </a>
-
-
-            </li>
-        </ul>
-        <br/>
-        <h1> GESTION DE CLIENTES </h1>
-        <div class="container"> 
-            <div class="row"> 
-                <form>
-                    <fieldset>
-                        <legend> Identificacion </legend>
-                        <input type="number" class="form-control" id="identificacion"/>
-                        <br/>
-                        <legend> Nombre </legend>
-                        <input type="text" class="form-control" id="nombre"/>
-                        <br/>
-                        <legend> Ocupacion </legend>
-                        <select class="form-control" id="ocupacion"> 
-                            <option value="estudiante"> Estudiante </option>
-                            <option value="docente"> Docente </option>
-                            <option value="otro"> Otro </option>
-                        </select>
-                        <br/>
-                        <button type="button" id="crearTabla" class="btn btn-success"> Crear Tabla </button>
-                        <button type="button" id="insertar" class="btn btn-success"> Insertar Datos </button>
-                        <button type="button" id="modificar" class="btn btn-danger"> Modificar Datos </button>
-                        <button type="button" id="listar" class="btn btn-success"> Mostrar/Actualizar Datos </button>
-                        <button type="button" id="borrarTodo" class="btn btn-danger"> Eliminar Todo </button>
-                    </fieldset>
-                </form>
-                <br/>
-                <hr/>
-                <h3> LISTA DE CLIENTES </h3>
-                <table class="table table-borderer table-hover" id="listaClientes" style="width: 715px">
-
-                </table>
+        <section class="form-cliente">
+            <ul>
+                <li><a href="Menu.html"> MENÚ </a></li>
+                    <li><a href="GestionProductos.html"> GESTIONAR PRODUCTO </a></li>
+                    <li><a href="Gestiondecompras.html"> GESTIONAR COMPRA </a></li>
+    
+    
+                </li>
+            </ul>
+            <br/>
+            <h1> GESTION DE CLIENTES </h1>
+            <div class="container"> 
+                <div class="row"> 
+                    <form>
+                        <fieldset>
+                            <legend> Identificacion </legend>
+                            <input type="number" class="form-control" id="identificacion"/>
+                            <br/>
+                            <legend> Nombre </legend>
+                            <input type="text" class="form-control" id="nombre"/>
+                            <br/>
+                            <legend> Ocupacion </legend>
+                            <select class="form-control" id="ocupacion"> 
+                                <option value="estudiante"> Estudiante </option>
+                                <option value="docente"> Docente </option>
+                                <option value="otro"> Otro </option>
+                            </select>
+                            <br/>
+                            <button type="button" id="crearTabla" class="btn btn-success"> Crear Tabla </button>
+                            <button type="button" id="insertar" class="btn btn-success"> Insertar Datos </button>
+                            <button type="button" id="modificar" class="btn btn-danger"> Modificar Datos </button>
+                            <button type="button" id="listar" class="btn btn-success"> Mostrar/Actualizar Datos </button>
+                            <button type="button" id="borrarTodo" class="btn btn-danger"> Eliminar Todo </button>
+                        </fieldset>
+                    </form>
+                    <br/>
+                    <hr/>
+                    <h3> LISTA DE CLIENTES </h3>
+                    <table class="table table-borderer table-hover" id="listaClientes" style="width: 715px">
+    
+                    </table>
+                </div>
             </div>
-        </div>
+        </section>
+        
     </body>
 </html>
