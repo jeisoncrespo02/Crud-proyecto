@@ -1,4 +1,4 @@
-var nuevoId;
+var nuevoidproducto;
 var db=openDatabase("itemDB", "1.0", "itemDB", 65535)
 function limpiar(){
     document.getElementById("tipo").value="";
@@ -21,9 +21,9 @@ function eliminarRegistro(){
                 });
             });
         });
-        nuevoId=lista[0];
+        nuevoidproducto=lista[0];
         db.transaction(function(transaction){
-            var sql="DELETE FROM clientes WHERE identificacion="+nuevoId+";"
+            var sql="DELETE FROM clientes WHERE idproducto="+idproducto+";"
             transaction.executeSql(sql, undefined, function(){
                 alert("Registro borrado satisfactoriamente, por favor actualice la tabla")
             }, function(transaction, err){
@@ -50,14 +50,14 @@ function editar(){
         document.getElementById("idproducto").value=lista[1];
         document.getElementById("nombre").value=lista[2];
         document.getElementById("precio").value=lista[3];
-        nuevoId=lista[0];
+        nuevoidproducto=lista[0];
     })
 }
 $(function(){
     //crear la tabla de productos
     $("#crearTabla").click(function(){
         db.transaction(function(transaction){
-            var sql="CREATE TABLE clientes (tipo tipo NOT NULL, idproducto VARCHAR(100) NOT NULL, nombre VARCHAR(100) NOT NULL, precio VARCHAR(100) NOT NULL)";
+            var sql="CREATE TABLE clientes (tipo  NOT NULL, idproducto VARCHAR(100) NOT NULL, nombre VARCHAR(100) NOT NULL, precio VARCHAR(100) NOT NULL)";
             transaction.executeSql(sql, undefined, function(){
                 alert("Tabla creada satisfactoriamente");
             }, function(transaction, err){
