@@ -1,11 +1,13 @@
 var nuevoId;
 var db=openDatabase("itemDB", "1.0", "itemDB", 65535)
+
 function limpiar(){
     document.getElementById("identificacion").value="";
     document.getElementById("nombre").value="";
     document.getElementById("ocupacion").value="";
     document.getElementById("sisben").value="";
 }
+
 //Funcionalidad de los botones
 //Eliminar registro
 function eliminarRegistro(){
@@ -32,7 +34,8 @@ function eliminarRegistro(){
         })
     });
 }
-//Editar registro.slice(-2, 0)
+
+//Editar registro
 function editar(){
     $(document).one('click', 'button[type="button"]', function(event){
         let id=this.id;
@@ -53,8 +56,10 @@ function editar(){
         nuevoId=lista[0];
     })
 }
+
 $(function(){
-    //crear la tabla de productos
+    
+    //crear la tabla
     $("#crearTabla").click(function(){
         db.transaction(function(transaction){
             var sql="CREATE TABLE clientes (identificacion NUMBER NOT NULL, nombre VARCHAR(100) NOT NULL, ocupacion VARCHAR(100) NOT NULL, sisben DECIMAL(4,2) NOT NULL)";
@@ -65,11 +70,13 @@ $(function(){
             })
         });
     });
-    //cargar la lista de productos
+    
+    //cargar la lista
     $("#listar").click(function(){
         cargarDatos();
     })
-    //funcion para listar y pintar tabla de productos en la pagina web
+    
+    //funcion para listar y pintar tabla en la pagina web
     function cargarDatos(){
         $("#listaClientes").children().remove();
         db.transaction(function(transaction){
@@ -93,6 +100,7 @@ $(function(){
             })
         })
     }
+    
     //insertar registros
     $("#insertar").click(function(){
         var identificacion=$("#identificacion").val();
@@ -110,6 +118,7 @@ $(function(){
         limpiar();
         cargarDatos();
     })
+    
     //Modificar un registro
     $("#modificar").click(function(){
         var nidentificacion=$("#identificacion").val();
@@ -126,6 +135,7 @@ $(function(){
             })
         })
     })
+    
     //Para borrar toda la lista de Registros
     $("#borrarTodo").click(function(){
         if(!confirm("Esta seguro de borrar la tabla?, los datos se perderan permanentemente",""))

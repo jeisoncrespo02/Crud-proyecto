@@ -1,5 +1,6 @@
 var nuevoId;
 var db=openDatabase("itemDB", "1.0", "itemDB", 65535)
+
 function limpiar(){
     document.getElementById("idCliente").value="";
     document.getElementById("tipoHelado").value="";
@@ -7,6 +8,7 @@ function limpiar(){
     document.getElementById("descuento").value="";
     document.getElementById("total").value="";
 }
+
 //Funcionalidad de los botones
 //Eliminar registro
 function eliminarRegistro(){
@@ -33,8 +35,10 @@ function eliminarRegistro(){
         })
     });
 }
+
 $(function(){
-    //crear la tabla de productos
+    
+    //crear la tabla
     $("#crearTabla").click(function(){
         db.transaction(function(transaction){
             var sql="CREATE TABLE compras (idCliente NUMBER NOT NULL, tipoHelado VARCHAR(100) NOT NULL, precio NUMBER NOT NULL, descuento NUMBER NOT NULL, total NUMBER NOT NULL)";
@@ -45,11 +49,13 @@ $(function(){
             })
         });
     });
-    //cargar la lista de productos
+    
+    //cargar la lista
     $("#listar").click(function(){
         cargarDatos();
     })
-    //funcion para listar y pintar tabla de productos en la pagina web
+    
+    //funcion para listar y pintar tabla en la pagina web
     function cargarDatos(){
         $("#listaCompras").children().remove();
         db.transaction(function(transaction){
@@ -74,6 +80,7 @@ $(function(){
             })
         })
     }
+    
     //insertar registros
     $("#comprar").click(function(){
         var idCliente=$("#idCliente").val();
@@ -92,6 +99,7 @@ $(function(){
         limpiar();
         cargarDatos();
     })
+    
     //Para borrar toda la lista de Registros
     $("#borrarTodo").click(function(){
         if(!confirm("Esta seguro de borrar la tabla?, los datos se perderan permanentemente",""))

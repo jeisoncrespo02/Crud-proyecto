@@ -1,11 +1,13 @@
 var nuevoIdProducto;
 var db=openDatabase("itemDB", "1.0", "itemDB", 65535)
+
 function limpiar(){
     document.getElementById("idProducto").value="";
     document.getElementById("tipo").value="";
     document.getElementById("nombre").value="";
     document.getElementById("precio").value="";
 }
+
 //Funcionalidad de los botones
 //Eliminar registro
 function eliminarRegistro(){
@@ -32,6 +34,7 @@ function eliminarRegistro(){
         })
     });
 }
+
 //Editar registro.slice(-2, 0)
 function editar(){
     $(document).one('click', 'button[type="button"]', function(event){
@@ -53,7 +56,9 @@ function editar(){
         nuevoIdProducto=lista[0];
     })
 }
+
 $(function(){
+    
     //crear la tabla de productos
     $("#crearTabla").click(function(){
         db.transaction(function(transaction){
@@ -65,10 +70,12 @@ $(function(){
             })
         });
     });
+    
     //cargar la lista de productos
     $("#listar").click(function(){
         cargarDatos();
     })
+    
     //funcion para listar y pintar tabla de productos en la pagina web
     function cargarDatos(){
         $("#listaProductos1").children().remove();
@@ -93,6 +100,7 @@ $(function(){
             })
         })
     }
+    
     //insertar registros
     $("#insertar").click(function(){
         var idProducto=$("#idProducto").val();
@@ -110,6 +118,7 @@ $(function(){
         limpiar();
         cargarDatos();
     })
+    
     //Modificar un registro
     $("#modificar").click(function(){
         var nidProducto=$("#idProducto").val();
@@ -126,6 +135,7 @@ $(function(){
             })
         })
     })
+    
     //Para borrar toda la lista de Registros
     $("#borrarTodo").click(function(){
         if(!confirm("Esta seguro de borrar la tabla?, los datos se perderan permanentemente",""))

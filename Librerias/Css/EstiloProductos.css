@@ -1,8 +1,9 @@
 body{
-    width: 715px;
-    margin: 0 auto;
-    background-color: lightcoral;
+  width: 715px;
+  margin: 0 auto;
+  background-color: lightcoral;
 }
+
 .form-producto{
   width: 700px;
   padding: 30px;
@@ -10,10 +11,12 @@ body{
   margin-top: 100px;
   color: blue;
 }
+
 h1{
   text-align: center;
   color: blue;
 }
+
 form{
   width: 715px;
   color: blue;
@@ -25,30 +28,32 @@ form{
   border-radius: 4px;
   border-bottom: 16px;
 }
+
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  li {
-    float: left;
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
   
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
+li {
+  float: left;
+}
   
-  li a:hover {
-    background-color: #111;
-  }
-  img{
-    width: 40px;
-    height: 20px;
-  }
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
   
+li a:hover {
+  background-color: #111;
+}
+  
+img{
+  width: 40px;
+  height: 20px;
+}
