@@ -35,7 +35,7 @@ function eliminarRegistro(){
     });
 }
 
-//Editar registro.slice(-2, 0)
+//Editar registro
 function editar(){
     $(document).one('click', 'button[type="button"]', function(event){
         let id=this.id;
